@@ -1,5 +1,23 @@
 {% load sekizai_tags staticfiles thumbnail %}
 
-{% for image in images %}
-<img src="{% thumbnail image.image 900x600 crop='True' upscale='True' %}" class="landscape">
-{% endfor %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL  }}bower_components/slick.js/slick/slick.css"/>{% endaddtoblock "css" %}
+{% addtoblock "js" %}<script src="{{ STATIC_URL  }}bower_components/jquery/dist/jquery.min.js"></script>{% endaddtoblock "js" %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL  }}bower_components/slick.js/slick/slick.js"></script>{% endaddtoblock "js" %}
+
+<div class="image-slider">
+  {% for image in images %}
+  <div class="single-image">
+    <img data-lazy="{% thumbnail image.image 900x600 crop='True' upscale='True' %}" class="landscape">
+  </div>
+  {% endfor %}
+</div>
+
+{% addtoblock "js" %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.image-slider').slick({
+      lazyLoad: 'ondemand',
+    });
+  });
+</script>
+{% endaddtoblock "js" %}
