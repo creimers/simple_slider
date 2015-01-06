@@ -24,7 +24,7 @@ class Image(Sortable):
     class Meta(Sortable.Meta):
         pass
 
-    gallery = SortableForeignKey(
+    slider = SortableForeignKey(
         Slider,
         related_name="images"
     )

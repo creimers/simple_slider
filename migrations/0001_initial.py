@@ -19,18 +19,11 @@ class Migration(SchemaMigration):
         db.create_table(u'djangocms_simple_slider_image', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('order', self.gf('django.db.models.fields.PositiveIntegerField')(default=1, db_index=True)),
-            ('gallery', self.gf('adminsortable.fields.SortableForeignKey')(related_name='images', to=orm['djangocms_simple_slider.Slider'])),
+            ('slider', self.gf('adminsortable.fields.SortableForeignKey')(related_name='images', to=orm['djangocms_simple_slider.Slider'])),
             ('image', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['filer.Image'], null=True)),
             ('caption_text', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
         ))
         db.send_create_signal(u'djangocms_simple_slider', ['Image'])
-
-        # Adding model 'SliderPluginModel'
-        db.create_table(u'djangocms_simple_slider_sliderpluginmodel', (
-            (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('slider', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['djangocms_simple_slider.Slider'])),
-        ))
-        db.send_create_signal(u'djangocms_simple_slider', ['SliderPluginModel'])
 
 
     def backwards(self, orm):
@@ -39,9 +32,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Image'
         db.delete_table(u'djangocms_simple_slider_image')
-
-        # Deleting model 'SliderPluginModel'
-        db.delete_table(u'djangocms_simple_slider_sliderpluginmodel')
 
 
     models = {
@@ -105,20 +95,15 @@ class Migration(SchemaMigration):
         u'djangocms_simple_slider.image': {
             'Meta': {'ordering': "['order']", 'object_name': 'Image'},
             'caption_text': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'gallery': ('adminsortable.fields.SortableForeignKey', [], {'related_name': "'images'", 'to': u"orm['djangocms_simple_slider.Slider']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['filer.Image']", 'null': 'True'}),
-            'order': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1', 'db_index': 'True'})
+            'order': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1', 'db_index': 'True'}),
+            'slider': ('adminsortable.fields.SortableForeignKey', [], {'related_name': "'images'", 'to': u"orm['djangocms_simple_slider.Slider']"})
         },
         u'djangocms_simple_slider.slider': {
             'Meta': {'object_name': 'Slider', '_ormbases': ['cms.CMSPlugin']},
             u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-        },
-        u'djangocms_simple_slider.sliderpluginmodel': {
-            'Meta': {'object_name': 'SliderPluginModel', '_ormbases': ['cms.CMSPlugin']},
-            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
-            'slider': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['djangocms_simple_slider.Slider']"})
         },
         u'filer.file': {
             'Meta': {'object_name': 'File'},

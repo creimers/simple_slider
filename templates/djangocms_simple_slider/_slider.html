@@ -7,7 +7,7 @@
 <div class="image-slider">
   {% for image in images %}
   <div class="single-image">
-    <img data-lazy="{% thumbnail image.image 900x600 crop='True' upscale='True' %}" class="landscape">
+    <img data-lazy="{% thumbnail image.image 2000x1000 crop='True' upscale='True' %}" class="img-responsive">
   </div>
   {% endfor %}
 </div>
