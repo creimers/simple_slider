@@ -1,5 +1,5 @@
-{% load sekizai_tags staticfiles %}
+{% load sekizai_tags staticfiles thumbnail %}
 
 {% for image in images %}
-    <img src="image.url" alt=""/>
+<img src="{% thumbnail image.image 900x600 crop='True' upscale='True' %}" class="landscape">
 {% endfor %}
