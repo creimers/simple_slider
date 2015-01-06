@@ -6,7 +6,7 @@ from adminsortable.models import Sortable
 from adminsortable.fields import SortableForeignKey
 
 
-class Slider(models.Model):
+class Slider(CMSPlugin):
 
     name = models.CharField(max_length=50)
 
@@ -45,11 +45,3 @@ class Image(Sortable):
             return u'%s' % self.caption_text
         else:
             return u'%s' % self.image.label
-
-
-class SliderPluginModel(CMSPlugin):
-
-    slider = models.ForeignKey(Slider)
-
-    def __unicode__(self):
-        return u'%s' % self.gallery.name
