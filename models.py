@@ -48,7 +48,8 @@ class Image(Sortable):
 
 
 class SliderPluginModel(CMSPlugin):
-        slider = models.ForeignKey(Slider)
 
-        def __unicode__(self):
-            return u'%s' % self.gallery.name
+    slider = models.ForeignKey(Slider)
+
+    def __unicode__(self):
+        return u'%s' % self.gallery.name
