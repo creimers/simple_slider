@@ -7,7 +7,7 @@ from adminsortable.admin import SortableStackedInline
 from django.utils.translation import ugettext as _
 
 from .models import (
-    SliderPluginModel,
+    Slider,
     Image
 )
 
@@ -17,10 +17,10 @@ class ImageInline(SortableStackedInline):
     extra = 1
 
 
-class Slider(CMSPluginBase):
+class SliderPlugin(CMSPluginBase):
 
-    model = SliderPluginModel
-    name = _("Gallerie")
+    model = Slider
+    name = _("Simple Slider")
     render_template = "djangocms_simple_slider/_slider.html"
     inlines = [ImageInline, ]
 
@@ -32,4 +32,4 @@ class Slider(CMSPluginBase):
 
         return context
 
-plugin_pool.register_plugin(Slider)
+plugin_pool.register_plugin(SliderPlugin)
