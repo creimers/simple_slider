@@ -1,15 +1,29 @@
 {% load sekizai_tags staticfiles thumbnail %}
 
 {% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL  }}bower_components/slick.js/slick/slick.css"/>{% endaddtoblock "css" %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL  }}djangocms_simple_slider/css/style.css"/>{% endaddtoblock "css" %}
+{% addtoblock "css"%}
+<link rel="stylesheet" href="{{STATIC_URL}}bower_components/font-awesome/css/font-awesome.css">
+{% endaddtoblock "css"%}
 {% addtoblock "js" %}<script src="{{ STATIC_URL  }}bower_components/jquery/dist/jquery.min.js"></script>{% endaddtoblock "js" %}
 {% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL  }}bower_components/slick.js/slick/slick.js"></script>{% endaddtoblock "js" %}
 
-<div class="image-slider">
-  {% for image in images %}
-  <div class="single-image">
-    <img data-lazy="{% thumbnail image.image 2000x1000 crop='True' upscale='True' %}" class="img-responsive">
+<div id="slider-wrapper">
+  <div class="image-slider">
+    {% for image in images %}
+    <div class="single-image">
+      <img data-lazy="{% thumbnail image.image 2000x1000 crop='True' upscale='True' %}" class="img-responsive">
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+
+  <button class="previous-arrow">
+    <i class="fa fa-angle-left fa-3x"></i>
+  </button>
+
+  <button class="next-arrow">
+    <i class="fa fa-angle-right fa-3x"></i>
+  </button>
 </div>
 
 {% addtoblock "js" %}
@@ -18,7 +32,16 @@
     $('.image-slider').slick({
       lazyLoad: 'ondemand',
       autoplay: true,
+      prevArrow: '.previous-arrow',
+      nextArrow: '.next-arrow',
     });
+
+    var previous = $('.previous-arrow').detach();
+    $('.image-slider').append(previous);
+
+    var next = $('.next-arrow').detach();
+    $('.image-slider').append(next);
+
   });
 </script>
 {% endaddtoblock "js" %}

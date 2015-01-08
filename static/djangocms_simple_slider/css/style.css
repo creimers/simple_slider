@@ -1,0 +1,23 @@
+.previous-arrow, .next-arrow {
+  position: absolute;
+  display: block;
+  height: 25px;
+  width: 25px;
+  line-height: 0;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+  top: 50%;
+  margin-top: -10px;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.previous-arrow{
+  left: 40px;
+}
+
+.next-arrow{
+  right: 40px;
+}
