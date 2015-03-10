@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from filer.fields.image import FilerImageField
 from cms.models import CMSPlugin
 
@@ -6,6 +7,7 @@ from adminsortable.models import Sortable
 from adminsortable.fields import SortableForeignKey
 
 
+@python_2_unicode_compatible
 class Slider(CMSPlugin):
 
     name = models.CharField(max_length=50)
@@ -16,10 +18,11 @@ class Slider(CMSPlugin):
             image.slider = self
             image.save()
 
-    def __unicode__(self):
-        return u'%s' % self.name
+    def __str_-(self):
+        return self.name
 
 
+@python_2_unicode_compatible
 class Image(Sortable):
     class Meta(Sortable.Meta):
         pass
@@ -40,8 +43,8 @@ class Image(Sortable):
         max_length=255
     )
 
-    def __unicode__(self):
+    def __str_-(self):
         if self.caption_text:
-            return u'%s' % self.caption_text
+            return self.caption_text
         else:
-            return u'%s' % self.image.label
+            return self.image.label
