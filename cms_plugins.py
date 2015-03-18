@@ -3,6 +3,7 @@
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 from adminsortable.admin import SortableStackedInline
+from django.contrib import admin
 
 from django.utils.translation import ugettext as _
 
@@ -12,7 +13,7 @@ from .models import (
 )
 
 
-class ImageInline(SortableStackedInline):
+class ImageInline(admin.StackedInline):
     model = Image
     extra = 1
 
@@ -29,6 +30,10 @@ class SliderPlugin(CMSPluginBase):
         context.update({
             'images': images
         })
+
+        context["dots"] = instance.dots
+        context["fade"] = instance.fade
+        context["autoplay"] = instance.autoplay
 
         return context
 
