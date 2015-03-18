@@ -1,4 +1,4 @@
 {
-	"directory": "static/bower_components",
+	"directory": "static/djangocms_simple_slider/bower_components",
 	"analytics": false
 }
