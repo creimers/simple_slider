@@ -16,6 +16,8 @@ class Slider(CMSPlugin):
 
     fade = models.BooleanField(default=False)
 
+    autoplay = models.BooleanField(default=True)
+
     def copy_relations(self, oldinstance):
         for image in oldinstance.images.all():
             image.pk = None
@@ -27,11 +29,9 @@ class Slider(CMSPlugin):
 
 
 @python_2_unicode_compatible
-class Image(Sortable):
-    class Meta(Sortable.Meta):
-        pass
+class Image(models.Model):
 
-    slider = SortableForeignKey(
+    slider = models.ForeignKey(
         Slider,
         related_name="images"
     )
