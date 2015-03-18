@@ -16,14 +16,6 @@
     </div>
     {% endfor %}
   </div>
-
-  <button class="previous-arrow">
-    <i class="fa fa-angle-left fa-3x"></i>
-  </button>
-
-  <button class="next-arrow">
-    <i class="fa fa-angle-right fa-3x"></i>
-  </button>
 </div>
 
 {% addtoblock "js" %}
@@ -31,16 +23,13 @@
   $(document).ready(function(){
     $('.image-slider').slick({
       lazyLoad: 'ondemand',
-      autoplay: true,
-      prevArrow: '.previous-arrow',
-      nextArrow: '.next-arrow',
+      autoplay: {{autoplay|yesno:"true,false"}},
+      dots: {{dots|yesno:"true,false"}},
+      fade: {{fade|yesno:"true,false"}},
+      {% if fade %}
+      cssEase: 'linear',
+      {% endif %}
     });
-
-    var previous = $('.previous-arrow').detach();
-    $('.image-slider').append(previous);
-
-    var next = $('.next-arrow').detach();
-    $('.image-slider').append(next);
 
   });
 </script>
