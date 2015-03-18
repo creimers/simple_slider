@@ -12,6 +12,10 @@ class Slider(CMSPlugin):
 
     name = models.CharField(max_length=50)
 
+    dots = models.BooleanField(default=False)
+
+    fade = models.BooleanField(default=False)
+
     def copy_relations(self, oldinstance):
         for image in oldinstance.images.all():
             image.pk = None
