@@ -18,7 +18,7 @@ class Slider(CMSPlugin):
             image.slider = self
             image.save()
 
-    def __str_-(self):
+    def __str__(self):
         return self.name
 
 
@@ -43,7 +43,7 @@ class Image(Sortable):
         max_length=255
     )
 
-    def __str_-(self):
+    def __str__(self):
         if self.caption_text:
             return self.caption_text
         else:
