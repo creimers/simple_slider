@@ -1,17 +1,5 @@
-.previous-arrow, .next-arrow {
-  position: absolute;
-  display: block;
-  height: 35px;
-  width: 35px;
-  line-height: 0;
-  cursor: pointer;
-  background: transparent;
-  color: white;
-  top: 50%;
-  margin-top: -10px;
-  padding: 0;
-  border: none;
-  outline: none;
+#slider-wrapper{
+  margin-bottom: 45px;
 }
 
 .previous-arrow{
