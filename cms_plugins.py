@@ -2,7 +2,6 @@
 
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
-from adminsortable.admin import SortableStackedInline
 from django.contrib import admin
 
 from django.utils.translation import ugettext as _

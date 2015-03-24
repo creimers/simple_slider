@@ -3,9 +3,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from filer.fields.image import FilerImageField
 from cms.models import CMSPlugin
 
-from adminsortable.models import Sortable
-from adminsortable.fields import SortableForeignKey
-
 
 @python_2_unicode_compatible
 class Slider(CMSPlugin):
